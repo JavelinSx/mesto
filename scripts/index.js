@@ -1,5 +1,5 @@
 const buttonEdit = document.querySelector('.profile__edit-button');
-const popupCloseLink = document.querySelector('.popup__close-link');
+const popupClose = document.querySelector('.popup__close-button');
 const popupSubmit = document.querySelector('.popup__submit');
 const popup = document.querySelector('.popup');
 
@@ -22,7 +22,7 @@ buttonEdit.addEventListener('click', () => {
     
 })
 
-popupCloseLink.addEventListener('click', () => {
+popupClose.addEventListener('click', () => {
 
     popup.classList.remove('popup_open');
     popup.classList.add('popup_close');
