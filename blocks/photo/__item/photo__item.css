@@ -1,0 +1,20 @@
+.photo__item {
+    max-width: 282px;
+    margin: 0;
+    margin-bottom: 20px;
+    border-radius: 5%;
+    background-color: #fff;
+    justify-self: center;
+    
+}
+@media screen and (min-width:637px) and (max-width:930px) {
+
+    .photo__item{
+        display: grid;
+        justify-self: end;
+    }
+    .photo__item:nth-child(2n){
+        justify-self: start;
+    }
+
+}

@@ -1,0 +1,24 @@
+.profile__info{
+    position: relative;
+}
+
+@media screen and (min-width:637px) and (max-width:930px) {
+
+    .profile__info{
+        width: 282px;
+        padding-left: 150px;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+}
+@media screen and (min-width:931px) and (max-width:100vw) {
+
+    .profile__info{
+        width: 336px;
+        padding-left: 150px;
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+}
