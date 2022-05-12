@@ -1,3 +1,17 @@
 .copyright {
+    color: #545454;
+    margin: 0;
     align-self: flex-start;
+    padding-top: 48px;
+    padding-bottom: 36px;
+    font-size: 14px;
+    line-height: 17px;
+}
+@media screen and (min-width:637px) and (max-width:100vw) {
+    .copyright{
+        padding-top: 66px;
+        padding-bottom: 60px;
+        font-size: 18px;
+        line-height: 22px;
+    }
 }

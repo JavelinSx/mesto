@@ -1,7 +1,7 @@
 .profile__name {
     position: relative;
     margin: 0;
-    padding-bottom: 14px;
+    padding-bottom: 7px;
     font-weight: 500;
     font-size: 27px;
     line-height: 33px;
@@ -11,9 +11,23 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-@media screen and (min-width:637px) and (max-width:100vw) {
+@media screen and (min-width:637px) and (max-width:931px) {
     .profile__name{
-        padding-bottom: 16px;
+
+        max-width: 300px;
+        font-size: 27px;
+        line-height: 33px;
+        padding-bottom: 10px;
+        text-align: start;
+    }
+}
+@media screen and (min-width:931px) and (max-width:100vw) {
+    .profile__name{
+
+        max-width: 300px;
+        font-size: 42px;
+        line-height: 48px;
+        padding-bottom: 10px;
         text-align: start;
     }
 }

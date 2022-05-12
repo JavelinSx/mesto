@@ -1,8 +1,6 @@
 .photo__description{
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom-left-radius: 5%;
-    border-bottom-right-radius: 5%;
-    padding: 25px;
 }

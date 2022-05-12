@@ -1,6 +1,9 @@
 .photo__item-like {
+    position: absolute;
+    right: 7%;
     align-self: center;
     background-image: url(../../../image/like.svg);
+    background-repeat: no-repeat;
     background-color: inherit;
     border: none;
     height: 19px;

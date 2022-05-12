@@ -1,4 +1,7 @@
 .photo__item-title {
+    padding-top: 20px;
+    padding-bottom: 25px;
+    padding-left: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
