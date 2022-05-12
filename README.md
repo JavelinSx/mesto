@@ -1,4 +1,4 @@
-# [Проект: Место] (https://javelinsx.github.io/mesto/)
+# [Проект: Место](https://javelinsx.github.io/mesto/)
 
 ### Обзор
 
