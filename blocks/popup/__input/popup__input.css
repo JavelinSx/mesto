@@ -1,8 +1,8 @@
-.popup__activity{
+.popup__input{
     padding-bottom: 13px;
     width: 100%;
     margin: 0;
-    margin-bottom: 48px;
+    margin-bottom: 25px;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -10,7 +10,6 @@
     border: none;
     border-bottom: 1px solid #7c7b7c;
 }
-
-.popup__activity:focus{
+.popup__input{
     outline: none;
 }
