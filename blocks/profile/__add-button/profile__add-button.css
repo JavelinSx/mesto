@@ -3,7 +3,7 @@
     width: 280px;
     height: 50px;
     border: 2px solid #FFFFFF;
-    background-image: url(../../../image/Vector.svg);
+    background-image: url(../../../image/Vector-mini.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-color: inherit;
@@ -17,6 +17,7 @@
 @media screen and (min-width:637px) and (max-width:100vw) {
 
     .profile__add-button{
+        background-image: url(../../../image/Vector.svg);
         width: 150px;
         height: 50px;
         grid-column: 2;
