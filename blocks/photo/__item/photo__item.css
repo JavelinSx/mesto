@@ -1,5 +1,5 @@
 .photo__item {
-    max-width: 282px;
+    position: relative;
     margin: 0;
     margin-bottom: 20px;
     border-top-left-radius: 5%;

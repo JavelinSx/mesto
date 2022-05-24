@@ -14,5 +14,5 @@
     opacity: .6;
 }
 .photo__item-like:active{
-    background-image: url(../../../image/black-like.png);
+    background-image: url(../../../image/black-like.svg);
 }

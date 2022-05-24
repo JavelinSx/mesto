@@ -1,0 +1,8 @@
+.popup__open-photo_open{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    visibility: visible;
+    opacity: 1;
+}

@@ -1,0 +1,8 @@
+.popup__open-photo-containter{
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
