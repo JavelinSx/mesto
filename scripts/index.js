@@ -64,11 +64,12 @@ function addAllPhoto(array){
 addAllPhoto(initialCards);
 function addOnePhoto(name, link){
     const photoItemClone = itemTemplate.querySelector('.photo__item').cloneNode(true);
+    const photoItemTitleClone = photoItemClone.querySelector('.photo__item-title');
     const photoItemImgClone = photoItemClone.querySelector('.photo__item-img');
     const photoLike = photoItemClone.querySelector('.photo__item-like');
     const photoDeleteClone = photoItemClone.querySelector('.photo__item-delete');
     photoItemImgClone.src = link;
-    photoItemImgClone.textContent = name;
+    photoItemTitleClone.textContent = name;
     photoItemImgClone.alt = 'Фото ' + name;
 
     photoLike.addEventListener('click', (e) => {
