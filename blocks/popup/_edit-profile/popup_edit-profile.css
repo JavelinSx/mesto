@@ -1,5 +1,7 @@
-.popup__add-photo{
+.popup_edit-profile{
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
+

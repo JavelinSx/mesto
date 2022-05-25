@@ -3,7 +3,7 @@ const popup = document.querySelector('.popup');
 
 // popup Edit profile
 const popupCloseEditProfile = document.querySelector('.popup__close-edit-profile');
-const popupEditProfile = document.querySelector('.popup__edit-profile');
+const popupEditProfile = document.querySelector('.popup_edit-profile');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const formEdit= document.querySelector('form[name=form-edit]');
 const formPhotoElement = document.querySelector('form[name=form-add-photo]');
@@ -15,7 +15,7 @@ let profileActivityInput = document.querySelector('input[name=profile-activity]'
 // popup Add photo
 const popupCloseAddPhoto = document.querySelector('.popup__close-add-photo');
 const buttonAddPhoto = document.querySelector('.profile__add-photo-button');
-const popupAddPhoto = document.querySelector('.popup__add-photo');
+const popupAddPhoto = document.querySelector('.popup_add-photo');
 const ulPhotoGrid = document.querySelector('.photo__grid');
 const itemTemplate = document.querySelector('#photo__item-template').content;
 let photoNameInput = document.querySelector('input[name=photo-name]');
@@ -23,7 +23,7 @@ let photoLinkInput = document.querySelector('input[name=photo-link]');
 
 // popup Open photo
 const popupClosePhoto = document.querySelector('.popup__close-photo');
-const popupOpenPhoto = document.querySelector('.popup__photo-open');
+const popupOpenPhoto = document.querySelector('.popup_photo-open');
 const popupTitlePhoto = document.querySelector('.popup__photo-title');
 const popupPhoto = document.querySelector('.popup__photo-wide');
 const photoTitle = document.querySelector('.photo__item-title');
