@@ -36,10 +36,10 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit-profile/popup__submit-profile.css);
 @import url(../blocks/popup/__submit-add-photo/popup__submit-add-photo.css);
-@import url(../blocks/popup/__add-photo/popup__add-photo.css);
-@import url(../blocks/popup/__edit-profile/popup__edit-profile.css);
+@import url(../blocks/popup/_add-photo/popup_add-photo.css);
+@import url(../blocks/popup/_edit-profile/popup_edit-profile.css);
 @import url(../blocks/popup/__form-edit/popup__form-edit.css);
 @import url(../blocks/popup/__photo-card/__photo-card.css);
-@import url(../blocks/popup/__photo-open/popup__photo-open.css);
+@import url(../blocks/popup/_photo-open/popup_photo-open.css);
 @import url(../blocks/popup/__photo-title/popup__photo-title.css);
 @import url(../blocks/popup/__photo-wide/popup__photo-wide.css);
