@@ -1,19 +1,20 @@
-// popup Edit profile
-
-const buttonEdit = document.querySelector('.profile__edit-button');
 const popupClose = document.querySelector('.popup__close-button');
 const popup = document.querySelector('.popup');
-const formElement = document.querySelector('form[name=popup__form]');
-const formPhotoElement = document.querySelector('form[name=popup__photo]');
+
+// popup Edit profile
+const popupCloseEditProfile = document.querySelector('.popup__close-edit-profile');
+const popupEditProfile = document.querySelector('.popup__edit-profile');
+const buttonEdit = document.querySelector('.profile__edit-button');
+const formEdit= document.querySelector('form[name=form-edit]');
+const formPhotoElement = document.querySelector('form[name=form-add-photo]');
 let profileName = document.querySelector('.profile__name');
 let profileActivity = document.querySelector('.profile__activity');
 let profileNameInput = document.querySelector('input[name=profile-name]');
 let profileActivityInput = document.querySelector('input[name=profile-activity]');
 
 // popup Add photo
-
 const popupCloseAddPhoto = document.querySelector('.popup__close-add-photo');
-const buttonAddPhoto = document.querySelector('.profile__add-button');
+const buttonAddPhoto = document.querySelector('.profile__add-photo-button');
 const popupAddPhoto = document.querySelector('.popup__add-photo');
 const ulPhotoGrid = document.querySelector('.photo__grid');
 const itemTemplate = document.querySelector('#photo__item-template').content;
@@ -21,11 +22,10 @@ let photoNameInput = document.querySelector('input[name=photo-name]');
 let photoLinkInput = document.querySelector('input[name=photo-link]');
 
 // popup Open photo
-
 const popupClosePhoto = document.querySelector('.popup__close-photo');
-const popupOpenPhoto = document.querySelector('.popup__open-photo');
-const popupTitlePhoto = document.querySelector('.popup__title-photo');
-const popupPhoto = document.querySelector('.popup__wide-photo');
+const popupOpenPhoto = document.querySelector('.popup__photo-open');
+const popupTitlePhoto = document.querySelector('.popup__photo-title');
+const popupPhoto = document.querySelector('.popup__photo-wide');
 const photoTitle = document.querySelector('.photo__item-title');
 
 // work of photo
@@ -63,6 +63,7 @@ function addAllPhoto(array){
 }
 addAllPhoto(initialCards);
 function addOnePhoto(name, link){
+  if(name !=='' || link !== ''){
     const photoItemClone = itemTemplate.querySelector('.photo__item').cloneNode(true);
     const photoItemTitleClone = photoItemClone.querySelector('.photo__item-title');
     const photoItemImgClone = photoItemClone.querySelector('.photo__item-img');
@@ -79,52 +80,61 @@ function addOnePhoto(name, link){
              ulPhotoGrid.removeChild(e.target.parentElement);
     })
     photoItemImgClone.addEventListener('click', (e) => {
-      popupOpenPhoto.classList.add('popup__open-photo_open');
+      popupOpenPhoto.classList.add('popup_open');
       let photoAlt = e.target.alt.split(' ')[1];
       let photoSrc = e.target.src;
       popupTitlePhoto.textContent = photoAlt;
       popupPhoto.src = photoSrc;
     })
     ulPhotoGrid.insertBefore(photoItemClone,ulPhotoGrid.firstChild)
+  }
+  else{
+    alert("Название или ссылка не может быть пустым")
+  }
+
 }
 
 // popup Edit profile
 
 buttonEdit.addEventListener('click', () => {
-    popup.classList.add('popup_open');
+    popupEditProfile.classList.add('popup_open');
     profileNameInput.value = profileName.textContent;
     profileActivityInput.value = profileActivity.textContent;
     
 })
-popupClose.addEventListener('click', () => {
-    popup.classList.remove('popup_open');
-})
-function formSubmitHandler (evt) {
+
+function formSubmitHandlerEditProfile (evt) {
     evt.preventDefault(); 
     profileName.textContent = profileNameInput.value;
     profileActivity.textContent = profileActivityInput.value;
-    popup.classList.remove('popup_open');
+    evt.target.parentElement.classList.remove('popup_open');
 }
-formElement.addEventListener('submit', formSubmitHandler)
+
+formEdit.addEventListener('submit', formSubmitHandlerEditProfile)
+
+popupCloseEditProfile.addEventListener('click', (e) => {
+  e.target.parentElement.parentElement.classList.remove('popup_open');
+})
 
 // popup Add photo
 
 buttonAddPhoto.addEventListener('click', () => {
     popupAddPhoto.classList.add('popup_open');  
 })
-popupCloseAddPhoto.addEventListener('click', () => {
-    popupAddPhoto.classList.remove('popup_open');
-    console.log('hello')
-})
+
 function formSubmitHandlerAddPhoto (evt) {
     evt.preventDefault(); 
     addOnePhoto(photoNameInput.value, photoLinkInput.value);
-    popupAddPhoto.classList.remove('popup_open');
+    evt.target.parentElement.classList.remove('popup_open');
 }
+
 formPhotoElement.addEventListener('submit', formSubmitHandlerAddPhoto)
 
-// popup Open photo
-
-popupClosePhoto.addEventListener('click', () => {
-  popupOpenPhoto.classList.remove('popup__open-photo_open');
+popupCloseAddPhoto.addEventListener('click', (e) => {
+  e.target.parentElement.parentElement.classList.remove('popup_open');
 })
+// popup Open photo
+popupClosePhoto.addEventListener('click', (e) => {
+  e.target.parentElement.parentElement.classList.remove('popup_open');
+})
+

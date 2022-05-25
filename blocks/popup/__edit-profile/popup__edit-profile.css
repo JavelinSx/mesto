@@ -1,0 +1,7 @@
+.popup__edit-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
