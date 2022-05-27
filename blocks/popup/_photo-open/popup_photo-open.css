@@ -1,4 +1,7 @@
 .popup_photo-open{
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: rgba(0,0,0,0.9);
 }

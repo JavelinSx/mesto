@@ -33,12 +33,14 @@ const photoTitle = document.querySelector('.photo__item-title');
 
 function addAllPhoto(array){
     for (item of array){
-        addOnePhoto(item.name, item.link)
+        addCard(addOnePhoto(item.name, item.link));
     }
 }
+
 addAllPhoto(initialCards);
+
 function addOnePhoto(name, link){
-  if(name !=='' || link !== ''){
+  
     const photoItemClone = itemTemplate.querySelector('.photo__item').cloneNode(true);
     const photoItemTitleClone = photoItemClone.querySelector('.photo__item-title');
     const photoItemImgClone = photoItemClone.querySelector('.photo__item-img');
@@ -48,69 +50,80 @@ function addOnePhoto(name, link){
     photoItemTitleClone.textContent = name;
     photoItemImgClone.alt = 'Фото ' + name;
 
-    photoLike.addEventListener('click', (e) => {
-        e.target.classList.toggle('photo__item-like_active')
+    photoLike.addEventListener('click', (evt) => {
+        evt.target.classList.toggle('photo__item-like_active')
     });
-    photoDeleteClone.addEventListener('click', (e) => {
-             ulPhotoGrid.removeChild(e.target.parentElement);
+    photoDeleteClone.addEventListener('click', (evt) => {
+             evt.target.closest('.photo__item').remove();
     })
-    photoItemImgClone.addEventListener('click', (e) => {
-      popupOpenPhoto.classList.add('popup_open');
-      let photoAlt = e.target.alt.split(' ')[1];
-      let photoSrc = e.target.src;
+    photoItemImgClone.addEventListener('click', (evt) => {
+      openPopup(popupOpenPhoto);
+      let photoAlt = evt.target.alt.split(' ')[1];
+      let photoSrc = evt.target.src;
       popupTitlePhoto.textContent = photoAlt;
       popupPhoto.src = photoSrc;
-      popupPhoto.alt = e.target.alt;
+      popupPhoto.alt = evt.target.alt;
     })
-    ulPhotoGrid.insertBefore(photoItemClone,ulPhotoGrid.firstChild)
-  }
-  else{
-    alert("Название или ссылка не может быть пустым")
-  }
-
+    return photoItemClone;
 }
+
+function addCard(card){
+  ulPhotoGrid.prepend(card);
+}
+
+function openPopup (popup) {
+  popup.classList.add('popup_open');
+}
+
+function closePopup (popup) {
+  popup.classList.remove('popup_open');
+} 
 
 // popup Edit profile
 
 buttonEdit.addEventListener('click', () => {
-    popupEditProfile.classList.add('popup_open');
+    openPopup(popupEditProfile);
     profileNameInput.value = profileName.textContent;
     profileActivityInput.value = profileActivity.textContent;
-    
 })
 
-function formSubmitHandlerEditProfile (evt) {
+function handleProfileFormSubmit (evt) {
     evt.preventDefault(); 
     profileName.textContent = profileNameInput.value;
     profileActivity.textContent = profileActivityInput.value;
-    evt.target.parentElement.classList.remove('popup_open');
+    closePopup(evt.target.closest('.popup'));
 }
 
-formEdit.addEventListener('submit', formSubmitHandlerEditProfile)
+formEdit.addEventListener('submit', handleProfileFormSubmit)
 
-popupCloseEditProfile.addEventListener('click', (e) => {
-  e.target.parentElement.parentElement.classList.remove('popup_open');
+popupCloseEditProfile.addEventListener('click', (evt) => {
+    closePopup(evt.target.closest('.popup'));
 })
 
 // popup Add photo
 
 buttonAddPhoto.addEventListener('click', () => {
-    popupAddPhoto.classList.add('popup_open');  
+    openPopup(popupAddPhoto);
 })
 
-function formSubmitHandlerAddPhoto (evt) {
+function handleAddCardFormSubmit (evt) {
     evt.preventDefault(); 
-    addOnePhoto(photoNameInput.value, photoLinkInput.value);
-    evt.target.parentElement.classList.remove('popup_open');
+    if(photoNameInput.value !=='' || photoLinkInput.value !== ''){
+      addCard(addOnePhoto(photoNameInput.value, photoLinkInput.value));
+      closePopup(evt.target.closest('.popup'));
+    }
+    else{
+      alert("Название или ссылка не может быть пустым")
+    }
 }
 
-formPhotoElement.addEventListener('submit', formSubmitHandlerAddPhoto)
+formPhotoElement.addEventListener('submit', handleAddCardFormSubmit)
 
-popupCloseAddPhoto.addEventListener('click', (e) => {
-  e.target.parentElement.parentElement.classList.remove('popup_open');
+popupCloseAddPhoto.addEventListener('click', (evt) => {
+  closePopup(evt.target.closest('.popup'));
 })
 // popup Open photo
-popupClosePhoto.addEventListener('click', (e) => {
-  e.target.parentElement.parentElement.classList.remove('popup_open');
+popupClosePhoto.addEventListener('click', (evt) => {
+  closePopup(evt.target.closest('.popup'));
 })
 

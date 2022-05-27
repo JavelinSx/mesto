@@ -45,29 +45,35 @@
 
 
         <div class="popup popup_edit-profile">
-            <form name="form-edit" class="popup__form-edit">
+            <div class="popup__container">
                 <button class="popup__close-button popup__close-edit-profile" type="button"></button>
-                <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-                <input type="text" class="popup__input" name="profile-name" placeholder="Имя">
-                <input type="text" class="popup__input" name="profile-activity" placeholder="Деятельность">
-                <button class="popup__submit popup__submit-profile" type="submit">Сохранить</button>
-            </form>
+                <form name="form-edit" class="popup__form-edit">
+                    <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
+                    <input type="text" class="popup__input" name="profile-name" placeholder="Имя">
+                    <input type="text" class="popup__input" name="profile-activity" placeholder="Деятельность">
+                    <button class="popup__submit popup__submit-profile" type="submit">Сохранить</button>
+                </form>
+            </div>
         </div>
         <div class="popup popup_add-photo">
-            <form name="form-add-photo" class="popup__form-add-photo popup__form-edit">
-                <button class="popup__close-button popup__close-add-photo" type="button"></button>
-                <h2 class="popup__title">Новое&nbsp;место</h2>
-                <input type="text" class="popup__input" name="photo-name" placeholder="Название">
-                <input type="text" class="popup__input" name="photo-link" placeholder="Ссылка на картинку">
-                <button class="popup__submit popup__submit-add-photo" type="submit">Сохранить</button>
-            </form>
+            <div class="popup__container">
+            <button class="popup__close-button popup__close-add-photo" type="button"></button>
+                <form name="form-add-photo" class="popup__form-add-photo popup__form-edit">
+                    <h2 class="popup__title">Новое&nbsp;место</h2>
+                    <input type="text" class="popup__input" name="photo-name" placeholder="Название">
+                    <input type="text" class="popup__input" name="photo-link" placeholder="Ссылка на картинку">
+                    <button class="popup__submit popup__submit-add-photo" type="submit">Сохранить</button>
+                </form>
+            </div>
         </div>
         <div class="popup popup_photo-open">
-            <figure class="popup__photo-card">
+            <div class="popup__container">
                 <button class="popup__close-button popup__close-photo" type="button"></button> 
-                <img src="#" alt="#" class="popup__photo-wide">
-                <figcaption class="popup__photo-title"></figcaption>
-            </figure>
+                <figure class="popup__photo-card">
+                    <img src="#" alt="#" class="popup__photo-wide">
+                    <figcaption class="popup__photo-title"></figcaption>
+                </figure>
+            </div>    
         </div>
 
         <template id="photo__item-template">
