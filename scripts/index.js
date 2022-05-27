@@ -110,6 +110,7 @@ function handleAddCardFormSubmit (evt) {
     evt.preventDefault(); 
     if(photoNameInput.value !=='' || photoLinkInput.value !== ''){
       addCard(addOnePhoto(photoNameInput.value, photoLinkInput.value));
+      formPhotoElement.reset();
       closePopup(evt.target.closest('.popup'));
     }
     else{
