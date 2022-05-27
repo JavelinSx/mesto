@@ -3,7 +3,6 @@
     width: 282px;
     min-height: 330px;
     box-sizing: border-box;
-    top: 15vh;
     background-color: #fff;
     color: black;
     padding-top: 25px;
@@ -18,7 +17,6 @@
     .popup__form-edit{
         width: 430px;
         padding: 36px;
-        top: 20vh;
     }
 
 }
