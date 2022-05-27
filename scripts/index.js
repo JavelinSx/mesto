@@ -58,8 +58,8 @@ function addOnePhoto(name, link){
     })
     photoItemImgClone.addEventListener('click', (evt) => {
       openPopup(popupOpenPhoto);
-      let photoAlt = evt.target.alt.split(' ')[1];
-      let photoSrc = evt.target.src;
+      const photoAlt = photoItemImgClone.alt.split(' ')[1];
+      const photoSrc = photoItemImgClone.src;
       popupTitlePhoto.textContent = photoAlt;
       popupPhoto.src = photoSrc;
       popupPhoto.alt = evt.target.alt;
