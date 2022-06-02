@@ -47,10 +47,18 @@
         <div class="popup popup_edit-profile">
             <div class="popup__container">
                 <button class="popup__close-button popup__close-edit-profile" type="button"></button>
-                <form name="form-edit" class="popup__form-edit">
+                <form name="form-edit" class="popup__form-edit"  novalidate>
                     <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-                    <input type="text" class="popup__input" name="profile-name" placeholder="Имя">
-                    <input type="text" class="popup__input" name="profile-activity" placeholder="Деятельность">
+                    <label class="popup__form-label">
+                        <input type="text" class="popup__input" name="profile-name" id="popup__form-edit-name" placeholder="Имя" required>
+                        <span class="popup__form-edit-name-error popup__input-error"></span>
+                    </label>
+
+                    <label class="popup__form-label">
+                        <input type="text" class="popup__input" name="profile-activity" id="popup__form-edit-activity" placeholder="Деятельность"required>
+                        <span class="popup__form-edit-activity-error popup__input-error"></span>
+                    </label>
+
                     <button class="popup__submit popup__submit-profile" type="submit">Сохранить</button>
                 </form>
             </div>
@@ -58,10 +66,19 @@
         <div class="popup popup_add-photo">
             <div class="popup__container">
             <button class="popup__close-button popup__close-add-photo" type="button"></button>
-                <form name="form-add-photo" class="popup__form-add-photo popup__form-edit">
+                <form name="form-add-photo" class="popup__form-add-photo popup__form-edit" novalidate>
                     <h2 class="popup__title">Новое&nbsp;место</h2>
-                    <input type="text" class="popup__input" name="photo-name" placeholder="Название">
-                    <input type="text" class="popup__input" name="photo-link" placeholder="Ссылка на картинку">
+
+                    <label class="popup__form-label">
+                        <input type="text" class="popup__input" name="photo-name" id="popup__form-photo-add" placeholder="Название" required>
+                        <span class="popup__form-photo-add-error popup__input-error"></span>
+                    </label>
+
+                    <label class="popup__form-label">
+                        <input type="text" class="popup__input" name="photo-link" id="popup__form-photo-link" placeholder="Ссылка на картинку" required>
+                        <span class="popup__form-photo-link-error popup__input-error"></span>
+                    </label>
+
                     <button class="popup__submit popup__submit-add-photo" type="submit">Сохранить</button>
                 </form>
             </div>

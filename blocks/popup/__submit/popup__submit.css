@@ -1,4 +1,5 @@
 .popup__submit{
+    margin-top: 20px;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
@@ -17,6 +18,10 @@
 .popup__submit:hover{
     cursor: pointer;
     opacity: .6;
+}
+.popup__submit:disabled{
+    cursor: default;
+    opacity: .2;
 }
 @media screen and (min-width:637px) and (max-width:100vw) {
 
