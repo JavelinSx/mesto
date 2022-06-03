@@ -64,11 +64,26 @@ const hideInputError = (formElement, inputElement) => {
 };
 
 const validForm = (formElement, inputElement) => {
+  const buttonSubmit = formElement.querySelector('.popup__submit')
+
+  if (inputElement.validity.typeMismatch){
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+
+  }
+  if (inputElement.validity.tooLong){
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+
+  }
+  if (inputElement.validity.tooShort){
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+
+  }
   if (!inputElement.validity.valid) {
 
+    buttonSubmit.setAttribute('disabled','disabled')
     showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
-
+    buttonSubmit.removeAttribute('disabled')
     hideInputError(formElement, inputElement);
   }
 }; 
@@ -76,7 +91,7 @@ const validForm = (formElement, inputElement) => {
 const createEventListener = (formElement) => {
   
   const allInput = Array.from(formElement.querySelectorAll('.popup__input'))
-  console.log(allInput)
+
   allInput.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       validForm(formElement, inputElement)
