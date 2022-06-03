@@ -1,8 +1,7 @@
 .popup__input-error_active{
     opacity: 1;
-    min-width: 362px;
+    min-width: 240px;
     position: absolute;
-
     top: 25px;
     margin: 0;
     padding-top: 7px;
@@ -11,4 +10,12 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 15px;
+}
+@media screen and (min-width:637px) and (max-width:100vw) {
+
+    .popup__input-error_active{
+        min-width: 362px;
+    }
+
+
 }
