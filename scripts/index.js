@@ -1,6 +1,7 @@
 const popupClose = document.querySelector('.popup__close-button');
 const popup = document.querySelector('.popup');
-
+const overlay = document.querySelectorAll('.overlay');
+const popupOpen = document.querySelector('.popup_open');
 // popup Edit profile
 
 const popupCloseEditProfile = document.querySelector('.popup__close-edit-profile');
@@ -44,73 +45,6 @@ const photoNameInput = document.querySelector('input[name=photo-name]');
 const photoLinkInput = document.querySelector('input[name=photo-link]');
 
 //---------------<=
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-  // Находим элемент ошибки внутри самой функции
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  // Остальной код такой же
-  inputElement.classList.add('popup__input_invalid');
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add('popup__input-error_active');
-};
-
-const hideInputError = (formElement, inputElement) => {
-  // Находим элемент ошибки
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  // Остальной код такой же
-  inputElement.classList.remove('popup__input_invalid');
-  errorElement.classList.remove('popup__input-error_active');
-  errorElement.textContent = '';
-};
-
-const validForm = (formElement, inputElement) => {
-  const buttonSubmit = formElement.querySelector('.popup__submit')
-
-  if (inputElement.validity.typeMismatch){
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-
-  }
-  if (inputElement.validity.tooLong){
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-
-  }
-  if (inputElement.validity.tooShort){
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-
-  }
-  if (!inputElement.validity.valid) {
-
-    buttonSubmit.setAttribute('disabled','disabled')
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    buttonSubmit.removeAttribute('disabled')
-    hideInputError(formElement, inputElement);
-  }
-}; 
-
-const createEventListener = (formElement) => {
-  
-  const allInput = Array.from(formElement.querySelectorAll('.popup__input'))
-
-  allInput.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      validForm(formElement, inputElement)
-
-    })
-  })
-}
-
-const validationForm = () => {
-  const allForm = Array.from(document.forms) 
-  allForm.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    })
-    createEventListener(formElement)
-  }) 
-}
-validationForm();
-
 
 
 // work of photo
@@ -158,11 +92,23 @@ function addCard(card){
 
 function openPopup (popup) {
   popup.classList.add('popup_open');
+  popup.querySelector('.overlay').classList.add('overlay_active')
 }
 
 function closePopup (popup) {
   popup.classList.remove('popup_open');
+  popup.querySelector('.overlay').classList.remove('overlay_active')
+
 } 
+
+const overlayClose = () => {
+  Array.from(overlay).forEach(element => {
+    element.addEventListener('click', () => {
+      closePopup(element.closest('.popup'))
+    })
+  })
+}
+overlayClose();
 
 // popup Edit profile
 
@@ -172,44 +118,32 @@ buttonEdit.addEventListener('click', () => {
     profileActivityInput.value = profileActivity.textContent;
 })
 
-function handleProfileFormSubmit (evt) {
-    evt.preventDefault(); 
-    profileName.textContent = profileNameInput.value;
-    profileActivity.textContent = profileActivityInput.value;
-    closePopup(evt.target.closest('.popup'));
-}
-
-formEdit.addEventListener('submit', handleProfileFormSubmit)
-
 popupCloseEditProfile.addEventListener('click', (evt) => {
     closePopup(evt.target.closest('.popup'));
+
 })
 
 // popup Add photo
 
 buttonAddPhoto.addEventListener('click', () => {
     openPopup(popupAddPhoto);
+
 })
-
-function handleAddCardFormSubmit (evt) {
-    evt.preventDefault(); 
-    if(photoNameInput.value !=='' || photoLinkInput.value !== ''){
-      addCard(addOnePhoto(photoNameInput.value, photoLinkInput.value));
-      formPhotoElement.reset();
-      closePopup(evt.target.closest('.popup'));
-    }
-    else{
-      alert("Название или ссылка не может быть пустым")
-    }
-}
-
-formPhotoElement.addEventListener('submit', handleAddCardFormSubmit)
 
 popupCloseAddPhoto.addEventListener('click', (evt) => {
   closePopup(evt.target.closest('.popup'));
 })
+
 // popup Open photo
+
 popupClosePhoto.addEventListener('click', (evt) => {
   closePopup(evt.target.closest('.popup'));
+
 })
 
+document.addEventListener('keydown', (evt) => {
+  const popupOpen  = document.querySelector('.popup_open')
+  if ((evt.key==='Escape') && (popupOpen!=null)){
+    closePopup(popupOpen)
+  }
+})

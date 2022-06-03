@@ -43,27 +43,30 @@
 
         </footer>
 
-
+        
         <div class="popup popup_edit-profile">
-            <div class="popup__container">
-                <button class="popup__close-button popup__close-edit-profile" type="button"></button>
-                <form name="form-edit" class="popup__form-edit"  novalidate>
-                    <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
-                    <label class="popup__form-label">
-                        <input type="text" class="popup__input" name="profile-name" id="popup__form-edit-name" placeholder="Имя" minlength="2" maxlength="40" required>
-                        <span class="popup__form-edit-name-error popup__input-error"></span>
-                    </label>
+            <div class="overlay"></div>
+                <div class="popup__container">
+                    <button class="popup__close-button popup__close-edit-profile" type="button"></button>
+                    <form name="form-edit" class="popup__form-edit"  novalidate>
+                        <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
+                        <label class="popup__form-label">
+                            <input type="text" class="popup__input" name="profile-name" id="popup__form-edit-name" placeholder="Имя" minlength="2" maxlength="40" required>
+                            <span class="popup__form-edit-name-error popup__input-error"></span>
+                        </label>
 
-                    <label class="popup__form-label">
-                        <input type="text" class="popup__input" name="profile-activity" id="popup__form-edit-activity" placeholder="Деятельность" minlength="2" maxlength="200" required>
-                        <span class="popup__form-edit-activity-error popup__input-error"></span>
-                    </label>
+                        <label class="popup__form-label">
+                            <input type="text" class="popup__input" name="profile-activity" id="popup__form-edit-activity" placeholder="Деятельность" minlength="2" maxlength="200" required>
+                            <span class="popup__form-edit-activity-error popup__input-error"></span>
+                        </label>
 
-                    <button class="popup__submit popup__submit-profile" type="submit">Сохранить</button>
-                </form>
-            </div>
+                        <button class="popup__submit popup__submit-profile" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            
         </div>
         <div class="popup popup_add-photo">
+            <div class="overlay"></div>
             <div class="popup__container">
             <button class="popup__close-button popup__close-add-photo" type="button"></button>
                 <form name="form-add-photo" class="popup__form-add-photo popup__form-edit" novalidate>
@@ -84,6 +87,7 @@
             </div>
         </div>
         <div class="popup popup_photo-open">
+            <div class="overlay"></div>
             <div class="popup__container">
                 <button class="popup__close-button popup__close-photo" type="button"></button> 
                 <figure class="popup__photo-card">
@@ -106,5 +110,6 @@
     </div>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
 </body>
 </html>
