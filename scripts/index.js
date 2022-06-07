@@ -128,19 +128,19 @@ function addCard(card) {
 }
 
 function openPopup(popup) {
+
   popup.classList.add("popup_open");
   popup.querySelector(".overlay").classList.add("overlay_active");
   document.addEventListener("keydown", closeByEscape);
+
 }
 
 function closePopup(popup) {
-  const submitButton = popup.querySelector(
-    enableValidation.submitButtonSelector
-  );
+
   popup.classList.remove("popup_open");
   popup.querySelector(".overlay").classList.remove("overlay_active");
-  submitButton.setAttribute("disabled", "disabled");
   document.removeEventListener("keydown", closeByEscape);
+
 }
 
 const overlayClose = () => {
@@ -153,9 +153,13 @@ const overlayClose = () => {
 overlayClose();
 
 function handleAddCardFormSubmit(evt, form) {
+  const inputsList = Array.from(form.querySelectorAll(enableValidation.inputSelector)) 
+  const buttonSubmit = form.querySelector(enableValidation.submitButtonSelector)
+
   evt.preventDefault();
   addCard(addOnePhoto(photoNameInput.value, photoLinkInput.value));
   form.reset();
+  toggleButtonState(inputsList, buttonSubmit)
   closePopup(evt.target.closest(enableValidation.popupSelector));
 }
 
