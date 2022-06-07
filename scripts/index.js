@@ -163,7 +163,7 @@ function handleAddCardFormSubmit(evt, form) {
   closePopup(evt.target.closest(enableValidation.popupSelector));
 }
 
-function handleProfileFormSubmit(evt, form) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileActivity.textContent = profileActivityInput.value;
