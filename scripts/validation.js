@@ -69,12 +69,10 @@ const hasInvalidInput = (inputList) => {
 };
 
 const toggleButtonState = (inputList, buttonElement) => {
-  // Если есть хотя бы один невалидный инпут
+
   if (hasInvalidInput(inputList)) {
-    // сделай кнопку неактивной
     buttonElement.disabled = true;
   } else {
-    // иначе сделай кнопку активной
     buttonElement.disabled = false;
   }
 };
