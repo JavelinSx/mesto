@@ -1,4 +1,6 @@
-const initialCards = [
+
+
+export const initialCards = [
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,14 +27,14 @@ const initialCards = [
     }
   ]; 
 
-const imageArea = document.querySelector('.photo__grid');
-const popupPhoto = document.querySelector(".popup_photo-open");
 
-  class Card{
-    constructor(data, cardSelector){
+
+export class Card{
+    constructor(data, cardSelector, handleOpenViewPopup){
       this._name = data.name;
       this._link = data.link;
       this._cardSelector = cardSelector;
+      this._handleOpenViewPopup = handleOpenViewPopup;
     }
 
     _getTemplate(){
@@ -44,21 +46,6 @@ const popupPhoto = document.querySelector(".popup_photo-open");
       return cardElement
     }
 
-
-    // photoLike.addEventListener("click", (evt) => {
-    //   evt.target.classList.toggle("photo__item-like_active");
-    // });
-    // photoDeleteClone.addEventListener("click", (evt) => {
-    //   evt.target.closest(".photo__item").remove();
-    // });
-    // photoItemImgClone.addEventListener("click", (evt) => {
-    //   openPopup(popupOpenPhoto);
-    //   const photoAlt = photoItemImgClone.alt.split(" ")[1];
-    //   const photoSrc = photoItemImgClone.src;
-    //   popupTitlePhoto.textContent = photoAlt;
-    //   popupPhoto.src = photoSrc;
-    //   popupPhoto.alt = evt.target.alt;
-    // });
     _setEventListener(){
       this._element.querySelector('.photo__item-like').addEventListener('click', () => {
         this._handleLikeClick();
@@ -67,31 +54,18 @@ const popupPhoto = document.querySelector(".popup_photo-open");
         this._handleDeleteClick();
       })
       this._element.querySelector('.photo__item-img').addEventListener('click', () => {
-        this._handleOpenPopup();
-      })
-      popupPhoto.querySelector('.popup__close-button').addEventListener('click', () => {
-        this._handleClosePopup();
+        this._handleImageClick();
       })
     }
 
-    _handleLikeClick(){
+    _handleLikeClick = () =>{
       this._element.querySelector('.photo__item-like').classList.toggle("photo__item-like_active")
-      console.log(this._element.querySelector('.photo__item-like').classList)
     }
-    _handleDeleteClick(){
+    _handleDeleteClick = () =>{
       this._element.remove();
     }
-    _handleOpenPopup(){
-      openPopup(popupPhoto)
-      const imagePopup = popupPhoto.querySelector('.popup__photo-wide');
-      const textPopup = popupPhoto.querySelector('.popup__photo-title');
-      imagePopup.src = this._link;
-      imagePopup.alt = this._name;
-      textPopup.textContent = this._name;
-    }
-    _handleClosePopup(){
-      closePopup(popupPhoto)
-
+    _handleImageClick = () =>{
+      this._handleOpenViewPopup({name: this._name, link: this._link})
     }
     generatedCard(){
       this._element = this._getTemplate();
@@ -102,31 +76,6 @@ const popupPhoto = document.querySelector(".popup_photo-open");
     }
   }
 
-  initialCards.forEach((item) => {
-      const card = new Card(item, '.photo__item-template')
-      const cardElement = card.generatedCard();
-      imageArea.append(cardElement);
-  })
 
 
-  function openPopup(popup) {
 
-    popup.classList.add("popup_open");
-    popup.querySelector(".overlay").classList.add("overlay_active");
-    document.addEventListener("keydown", closeByEscape);
-  
-  }
-  function closePopup(popup) {
-
-    popup.classList.remove("popup_open");
-    popup.querySelector(".overlay").classList.remove("overlay_active");
-    document.removeEventListener("keydown", closeByEscape);
-  
-  }
-
-  function closeByEscape(evt) {
-    if (evt.key === "Escape") {
-      const openedPopup = document.querySelector(".popup_open");
-      closePopup(openedPopup);
-    }
-  }
