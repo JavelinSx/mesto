@@ -1,5 +1,5 @@
 import {Card} from './Card.js'
-import {Validation} from './Validation.js'
+import {FormValidation} from './FormValidation.js'
 import {enableValidation} from './enableValidation.js'
 import {initialCards} from './initialCards.js'
 
@@ -23,11 +23,7 @@ const closePopupButtons = Array.from(document.querySelectorAll('.popup__close-bu
 const imagePopup = popupOpenPhoto.querySelector('.popup__photo-wide');
 const textPopup = popupOpenPhoto.querySelector('.popup__photo-title');
 
-const validationAddPhoto = new Validation(enableValidation ,formProfileEdit);
-validationAddPhoto.createEventListener();
 
-const validationEditProfile = new Validation(enableValidation ,formPhotoAdd);
-validationEditProfile.createEventListener();
 
 
 // popup Edit profile
@@ -36,21 +32,15 @@ buttonEdit.addEventListener("click", () => {
   openPopup(popupEditProfile);
   profileNameInput.value = profileName.textContent;
   profileActivityInput.value = profileActivity.textContent;
-  
-
-  
 });
 
 popupCloseEditProfile.addEventListener("click", (evt) => {
   closePopup(evt.target.closest(".popup"));
 });
 
-// popup Add photo
 
 buttonAddPhoto.addEventListener("click", () => {
   openPopup(popupAddPhoto);
-
-
 });
 
 
@@ -63,8 +53,7 @@ closePopupButtons.forEach(elem => {
 
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_open");
-    closePopup(openedPopup);
+    closePopup(document.querySelector(".popup_open"));
   }
 }
 
@@ -93,8 +82,8 @@ const handleOpenViewPopup = ({name, link}) => {
 function handleAddCardFormSubmit(event) {
   event.preventDefault();
   imageArea.prepend(createCard({name: photoNameInput.value, link: photoLinkInput.value}, '.photo__item-template', handleOpenViewPopup));
-  closePopup(formAddPhoto.closest('.popup_open'))
-  formAddPhoto.reset();
+  closePopup(formPhotoAdd.closest('.popup_open'))
+  formPhotoAdd.reset();
 }
 
 function handleProfileFormSubmit(event) {
@@ -111,6 +100,12 @@ function createCard(data, cardSelector, handleOpenViewPopup){
 initialCards.forEach((item) => {
   imageArea.append(createCard(item, '.photo__item-template', handleOpenViewPopup));
 })
+
+const validationAddPhoto = new FormValidation(enableValidation ,formProfileEdit);
+validationAddPhoto.createEventListener();
+
+const validationEditProfile = new FormValidation(enableValidation ,formPhotoAdd);
+validationEditProfile.createEventListener();
 
 formPhotoAdd.addEventListener('submit', handleAddCardFormSubmit)
 formProfileEdit.addEventListener('submit', handleProfileFormSubmit)
