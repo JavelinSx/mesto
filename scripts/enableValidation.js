@@ -7,6 +7,7 @@ export const enableValidation = {
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_invalid",
   errorClass: "popup__input-error_active",
+  toggleSubmit: "popup__submit-deactive"
 };
 
 const formAddPhoto = document.querySelector(

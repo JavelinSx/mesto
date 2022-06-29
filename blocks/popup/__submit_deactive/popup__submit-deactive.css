@@ -1,0 +1,6 @@
+.popup__submit-deactive:disabled{
+
+    opacity: 0.2;
+    cursor: default;
+    
+}
