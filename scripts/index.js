@@ -22,17 +22,21 @@ const popupsArray = Array.from(document.querySelectorAll('.popup'));
 const imagePopup = popupOpenPhoto.querySelector('.popup__photo-wide');
 const textPopup = popupOpenPhoto.querySelector('.popup__photo-title');
 
-
+const validationAddPhoto = new FormValidation(enableValidation ,formPhotoAdd);
+const validationEditProfile = new FormValidation(enableValidation ,formProfileEdit);
 
 
 buttonEdit.addEventListener("click", () => {
   openPopup(popupEditProfile);
   profileNameInput.value = profileName.textContent;
   profileActivityInput.value = profileActivity.textContent;
+  validationEditProfile.enableValidation();
+  validationEditProfile.clearFormError();
 });
 
 buttonAddPhoto.addEventListener("click", () => {
   openPopup(popupAddPhoto);
+  validationAddPhoto.enableValidation();
   validationAddPhoto.clearFormError();
 });
 
@@ -92,11 +96,8 @@ initialCards.forEach((item) => {
   imageArea.append(createCard(item, '.photo__item-template', handleOpenViewPopup));
 })
 
-const validationAddPhoto = new FormValidation(enableValidation ,formProfileEdit);
-validationAddPhoto.createEventListener();
 
-const validationEditProfile = new FormValidation(enableValidation ,formPhotoAdd);
-validationEditProfile.createEventListener();
+
 
 formPhotoAdd.addEventListener('submit', handleAddCardFormSubmit)
 formProfileEdit.addEventListener('submit', handleProfileFormSubmit)

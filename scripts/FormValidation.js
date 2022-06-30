@@ -15,8 +15,6 @@ export class FormValidation{
       this._hideInputError(elem);
     })
     this._toggleButtonState();
-    console.log(this._toggleButtonState())
-
   }
   _showInputError = (elem) => {
     const errorElement = this._form.querySelector(`.${elem.id}-error`);
@@ -32,7 +30,7 @@ export class FormValidation{
     errorElement.textContent = "";
     };
 
-  createEventListener = () => {
+  enableValidation = () => {
     this._inputs.forEach(elem => elem.addEventListener('input', () => {
       this._validForm(elem)
       this._toggleButtonState()
@@ -42,8 +40,10 @@ export class FormValidation{
   _validForm = (elem) => {
     if (!elem.validity.valid) {
       this._showInputError(elem);
+      
     } else {
       this._hideInputError(elem);
+
     }
     return elem.validity.valid;
   }
