@@ -8,8 +8,16 @@ export class FormValidation{
     this._error = enableValidation.errorClass;
     this._errorInvalid = enableValidation.inputErrorClass;
     this._toggleSubmit = enableValidation.toggleSubmit;
-  }
 
+  }
+  clearFormError = () => {
+    this._inputs.forEach(elem => {
+      this._hideInputError(elem);
+    })
+    this._toggleButtonState();
+    console.log(this._toggleButtonState())
+
+  }
   _showInputError = (elem) => {
     const errorElement = this._form.querySelector(`.${elem.id}-error`);
     elem.classList.add(this._errorInvalid);
@@ -27,7 +35,7 @@ export class FormValidation{
   createEventListener = () => {
     this._inputs.forEach(elem => elem.addEventListener('input', () => {
       this._validForm(elem)
-      this._toggleButtonState(this._inputs, this._submit)
+      this._toggleButtonState()
     })) 
   }
 
@@ -50,7 +58,6 @@ export class FormValidation{
     if (this._hasInvalidInput()) {
       this._submit.disabled = true;
       this._submit.classList.add(this._toggleSubmit)
-      
     } else {
       this._submit.disabled = false;
       this._submit.classList.remove(this._toggleSubmit)

@@ -5,7 +5,6 @@ import {initialCards} from './initialCards.js'
 
 const imageArea = document.querySelector(".photo__grid");
 
-const popupCloseEditProfile = document.querySelector(".popup__close-edit-profile");
 const popupEditProfile = document.querySelector(".popup_type_edit-profile");
 const buttonEdit = document.querySelector(".profile__edit-button");
 const profileName = document.querySelector(".profile__name");
@@ -19,14 +18,12 @@ const profileNameInput = formProfileEdit.querySelector("input[name=profile-name]
 const profileActivityInput = formProfileEdit.querySelector("input[name=profile-activity]");
 const photoNameInput = document.querySelector("input[name=photo-name]");
 const photoLinkInput = document.querySelector("input[name=photo-link]");
-const closePopupButtons = Array.from(document.querySelectorAll('.popup__close-button')) ;
+const popupsArray = Array.from(document.querySelectorAll('.popup')); 
 const imagePopup = popupOpenPhoto.querySelector('.popup__photo-wide');
 const textPopup = popupOpenPhoto.querySelector('.popup__photo-title');
 
 
 
-
-// popup Edit profile
 
 buttonEdit.addEventListener("click", () => {
   openPopup(popupEditProfile);
@@ -34,22 +31,20 @@ buttonEdit.addEventListener("click", () => {
   profileActivityInput.value = profileActivity.textContent;
 });
 
-popupCloseEditProfile.addEventListener("click", (evt) => {
-  closePopup(evt.target.closest(".popup"));
-});
-
-
 buttonAddPhoto.addEventListener("click", () => {
   openPopup(popupAddPhoto);
+  validationAddPhoto.clearFormError();
 });
 
 
-closePopupButtons.forEach(elem => {
-   elem.addEventListener('click', (evt) => {
-    closePopup(evt.target.closest(".popup"));
-  })
-})
 
+popupsArray.forEach(popup => {
+  popup.addEventListener('click', (event) => {
+    if (event.target.classList.contains('popup') || event.target.classList.contains('popup__close-button')) {        
+      closePopup(popup);          
+    }
+  })
+}) 
 
 function closeByEscape(evt) {
   if (evt.key === "Escape") {
@@ -58,17 +53,13 @@ function closeByEscape(evt) {
 }
 
 function openPopup(popup) {
-
   popup.classList.add("popup_open");
   document.addEventListener("keydown", closeByEscape);
-
 }
 
 function closePopup(popup) {
-
   popup.classList.remove("popup_open");
   document.removeEventListener("keydown", closeByEscape);
-
 }
 
 const handleOpenViewPopup = ({name, link}) => {
@@ -109,3 +100,4 @@ validationEditProfile.createEventListener();
 
 formPhotoAdd.addEventListener('submit', handleAddCardFormSubmit)
 formProfileEdit.addEventListener('submit', handleProfileFormSubmit)
+
