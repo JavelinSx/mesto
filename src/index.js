@@ -1,7 +1,8 @@
-import {Card} from './Card.js'
-import {FormValidation} from './FormValidation.js'
-import {enableValidation} from './enableValidation.js'
-import {initialCards} from './initialCards.js'
+import './pages/index.css';
+import {Card} from './scripts/Card.js'
+import {FormValidation} from './scripts/FormValidation.js'
+import {enableValidation} from './scripts/enableValidation.js'
+import {initialCards} from './scripts/initialCards.js'
 
 const imageArea = document.querySelector(".photo__grid");
 
