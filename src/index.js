@@ -1,27 +1,18 @@
 import './pages/index.css';
+
+import {
+  imageArea,profileName,buttonEdit,profileActivity,buttonAddPhoto,popupAddPhoto,popupOpenPhoto,
+  formProfileEdit,formPhotoAdd,popupEditProfile,profileNameInput,profileActivityInput,photoNameInput,
+  photoLinkInput,popupsArray,imagePopup,textPopup
+} from './scripts/constants.js'
+
 import {Card} from './scripts/Card.js'
 import {FormValidation} from './scripts/FormValidation.js'
 import {enableValidation} from './scripts/enableValidation.js'
 import {initialCards} from './scripts/initialCards.js'
+import Section from './scripts/Section.js'
+import Popup from './scripts/Popup.js'
 
-const imageArea = document.querySelector(".photo__grid");
-
-const popupEditProfile = document.querySelector(".popup_type_edit-profile");
-const buttonEdit = document.querySelector(".profile__edit-button");
-const profileName = document.querySelector(".profile__name");
-const profileActivity = document.querySelector(".profile__activity");
-const buttonAddPhoto = document.querySelector(".profile__add-photo-button");
-const popupAddPhoto = document.querySelector(".popup_type_add-photo");
-const popupOpenPhoto = document.querySelector(".popup_photo-open");
-const formProfileEdit = document.querySelector(".popup__form-edit");
-const formPhotoAdd = document.querySelector(".popup__form-add-photo")
-const profileNameInput = formProfileEdit.querySelector("input[name=profile-name]");
-const profileActivityInput = formProfileEdit.querySelector("input[name=profile-activity]");
-const photoNameInput = document.querySelector("input[name=photo-name]");
-const photoLinkInput = document.querySelector("input[name=photo-link]");
-const popupsArray = Array.from(document.querySelectorAll('.popup')); 
-const imagePopup = popupOpenPhoto.querySelector('.popup__photo-wide');
-const textPopup = popupOpenPhoto.querySelector('.popup__photo-title');
 
 const validationAddPhoto = new FormValidation(enableValidation ,formPhotoAdd);
 const validationEditProfile = new FormValidation(enableValidation ,formProfileEdit);
