@@ -19,14 +19,14 @@ export default class Popup{
           }
     }
 
-    setEventListeners(popups){
-        popups.forEach(popup => {
+    setEventListeners(popup){
+
             popup.addEventListener('click', (event) => {
               if (event.target.classList.contains('popup') || event.target.classList.contains('popup__close-button')) {        
                 this.close(popup)          
               }
             })
-          }) 
+
 
     }
 }

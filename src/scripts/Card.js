@@ -1,5 +1,5 @@
 
-export class Card{
+export default class Card{
     constructor(data, cardSelector, handleOpenViewPopup){
 
       this._name = data.name;

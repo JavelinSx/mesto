@@ -6,11 +6,12 @@ import {
   photoLinkInput,popupsArray,imagePopup,textPopup
 } from './scripts/constants.js'
 
-import {Card} from './scripts/Card.js'
 import {FormValidation} from './scripts/FormValidation.js'
 import {enableValidation} from './scripts/enableValidation.js'
 import {initialCards} from './scripts/initialCards.js'
+
 import Section from './scripts/Section.js'
+import Card from './scripts/Card.js'
 import Popup from './scripts/Popup.js'
 
 
