@@ -24,7 +24,7 @@ const textPopup = popupOpenPhoto.querySelector('.popup__photo-title');
 
 const validationAddPhoto = new FormValidation(enableValidation ,formPhotoAdd);
 const validationEditProfile = new FormValidation(enableValidation ,formProfileEdit);
-
+//4 часа искал проблему почему не работает toggle при открытии формы добавления карточки => оказалось что формы переданные в классы были поменяны местами formPhotoAdd <=> formProfileEdit
 
 buttonEdit.addEventListener("click", () => {
   openPopup(popupEditProfile);
