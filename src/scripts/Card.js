@@ -1,18 +1,17 @@
 
 export default class Card{
-    constructor(data, cardSelector, handleOpenViewPopup){
+    constructor(data, templateCardSelector, handleCardClick){
 
       this._name = data.name;
       this._link = data.link;
-      this._cardSelector = cardSelector;
-      this._handleOpenViewPopup = handleOpenViewPopup;
+      this._templateCardSelector = templateCardSelector;
+      this._handleCardClick = handleCardClick;
 
     }
 
     _getTemplate(){
 
-      return document
-        .querySelector(this._cardSelector)
+      return this._templateCardSelector
         .content
         .querySelector('.photo__item')
         .cloneNode(true)
@@ -35,7 +34,8 @@ export default class Card{
 
       this._element.querySelector('.photo__item-img').addEventListener('click', () => { 
 
-        this._handleImageClick(); 
+        this._handleCardClick; 
+        console.log(this._handleCardClick)
 
       }) 
 
@@ -47,9 +47,7 @@ export default class Card{
     _handleDeleteClick = () =>{
       this._element.remove();
     }
-    _handleImageClick = () =>{
-      this._handleOpenViewPopup({name: this._name, link: this._link})
-    }
+
     generatedCard(){
       this._element = this._getTemplate();
       this._likeButton = this._element.querySelector('.photo__item-like');

@@ -6,7 +6,6 @@ export default class UserInfo{
     }
 
     getUserInfo = () => {
-        console.log(this._name, this._info)
         return {name:this._name.textContent, 
                 info:this._info.textContent}
     }
