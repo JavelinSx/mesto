@@ -46,7 +46,7 @@
         <div class="popup popup_type_edit-profile">
                 <div class="popup__container">
                     <button class="popup__close-button popup__close-edit-profile" type="button"></button>
-                    <form name="popup_form" class="popup__form-edit"  novalidate>
+                    <form name="popup_form" class="popup__form-edit popup__form"  novalidate>
                         <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
                         <label class="popup__form-label">
                             <input type="text" class="popup__input" name="profile-name" id="popup__form-edit-name" placeholder="Имя" minlength="2" maxlength="40" required>
@@ -65,16 +65,16 @@
         <div class="popup popup_type_add-photo">
             <div class="popup__container">
             <button class="popup__close-button popup__close-add-photo" type="button"></button>
-                <form name="popup_form" class="popup__form-add-photo popup__form-edit" novalidate>
+                <form name="popup_form" class="popup__form-add-photo popup__form-edit popup__form" novalidate>
                     <h2 class="popup__title">Новое&nbsp;место</h2>
 
                     <label class="popup__form-label">
-                        <input type="text" class="popup__input" name="photo-name" id="popup__form-photo-add" placeholder="Название" minlength="2" maxlength="30" required>
+                        <input type="text" class="popup__input" name="name" id="popup__form-photo-add" placeholder="Название" minlength="2" maxlength="30" required>
                         <span class="popup__form-photo-add-error popup__input-error"></span>
                     </label>
 
                     <label class="popup__form-label">
-                        <input type="url" class="popup__input" name="photo-link" id="popup__form-photo-link" placeholder="Ссылка на картинку" required>
+                        <input type="url" class="popup__input" name="link" id="popup__form-photo-link" placeholder="Ссылка на картинку" required>
                         <span class="popup__form-photo-link-error popup__input-error"></span>
                     </label>
 

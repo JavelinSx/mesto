@@ -1,20 +1,18 @@
-export default class UserInfo{
-    constructor(userInfo){
-        this._name = userInfo.name;
-        this._info  = userInfo.info;
+export default class UserInfo {
+  constructor(name, activity) {
+    this._name = name;
+    this._activity = activity;
+  }
 
-    }
+  getUserInfo = () => {
+    return {
+      name: this._name.textContent,
+      activity: this._activity.textContent,
+    };
+  };
 
-    getUserInfo = () => {
-        return {name:this._name.textContent, 
-                info:this._info.textContent}
-    }
-
-    setUserInfo = (inputs) => {
-
-        
-        this._name.textContent = inputs.name.value;
-        this._info.textContent = inputs.info.value;
-
-    }
+  setUserInfo = (data) => {
+    this._name.textContent = data["profile-name"];
+    this._activity.textContent = data["profile-activity"];
+  };
 }
