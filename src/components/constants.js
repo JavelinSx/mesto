@@ -1,4 +1,24 @@
-export const enableValidation = {
+
+const profileNameSelector = '.profile__name';
+const profileActivitySelector = '.profile__position';
+const popupEditSelector = '.popup_type_edit-profile';
+const popupAddPhotoSelector = '.popup_type_add-photo';
+const popupWithImageSelector = '.popup_photo-open';
+const templateCardSelector = '.photo__item-template';
+const gallerySelector = '.photo__grid';
+
+export {
+  profileNameSelector,
+  profileActivitySelector,
+  popupEditSelector,
+  popupAddPhotoSelector,
+  popupWithImageSelector,
+  templateCardSelector,
+  gallerySelector
+}
+
+
+export const validationSelectors = {
   popupSelector: ".popup",
   formEditSelector: ".popup__form-edit",
   formAddPhotoSelector: ".popup__form-add-photo",
@@ -9,6 +29,9 @@ export const enableValidation = {
   errorClass: "popup__input-error_active",
   toggleSubmit: "popup__submit-deactive",
 };
+
+
+
 export const initialCards = [
   {
     name: "Архыз",

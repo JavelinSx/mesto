@@ -4,7 +4,7 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this._form = this._popupSelector.querySelector(".popup__form");
+    this._form = this._popupElement.querySelector(".popup__form");
     this._inputList = Array.from(this._form.querySelectorAll(".popup__input"));
     this._submitButton = this._form.querySelector(".popup__submit");
   }
@@ -19,12 +19,7 @@ export default class PopupWithForm extends Popup {
 
   setInputValues(data) {
     this._inputList.forEach((input) => {
-      if (input.name === "profile-name") {
-        input.value = data.name;
-      }
-      if (input.name === "profile-activity") {
-        input.value = data.activity;
-      }
+        data[input.name] = input.value
     });
   }
 
@@ -38,5 +33,6 @@ export default class PopupWithForm extends Popup {
   }
   close() {
     super.close();
+    this._form.reset()
   }
 }
