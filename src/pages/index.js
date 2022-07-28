@@ -1,8 +1,8 @@
 import "./index.css";
 
 import { FormValidation } from "../components/FormValidation.js";
-import { validationSelectors } from "../components/constants.js";
-import { initialCards } from "../components/constants.js";
+import { validationSelectors } from "../utils/constants.js";
+import { initialCards } from "../utils/constants.js";
 
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
@@ -18,7 +18,7 @@ import {
   popupWithImageSelector,
   templateCardSelector,
   gallerySelector
-} from '../components/constants.js'
+} from '../utils/constants.js'
 
 const buttonEdit = document.querySelector(".profile__edit-button");
 const buttonAddPhoto = document.querySelector(".profile__add-photo-button");
@@ -28,11 +28,11 @@ const formProfileEdit = document.querySelector(".popup__form-edit");
 
 const validationAddPhoto = new FormValidation(validationSelectors, formPhotoAdd);
 validationAddPhoto.enableValidation();
-validationAddPhoto.clearFormError();
+
 
 const validationEditProfile = new FormValidation(validationSelectors,formProfileEdit);
 validationEditProfile.enableValidation();
-validationEditProfile.clearFormError();
+
 
 const user = new UserInfo(profileNameSelector, profileActivitySelector);
 
@@ -64,11 +64,11 @@ cardsList.addItems(initialCards);
 
 buttonEdit.addEventListener("click", () => {
   popupWithFormEdit.open();
-
   popupWithFormEdit.setInputValues(user.getUserInfo());
+  validationEditProfile.clearFormError();
 });
 
 buttonAddPhoto.addEventListener("click", () => {
   popupWithFormPhoto.open()
-
+  validationAddPhoto.clearFormError();
 });
