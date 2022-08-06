@@ -1,6 +1,6 @@
 
 const profileNameSelector = '.profile__name';
-const profileActivitySelector = '.profile__position';
+const profileActivitySelector = '.profile__activity';
 const popupEditSelector = '.popup_type_edit-profile';
 const popupAddPhotoSelector = '.popup_type_add-photo';
 const popupWithImageSelector = '.popup_photo-open';
