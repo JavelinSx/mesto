@@ -42,11 +42,13 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit-profile/popup__submit-profile.css);
 @import url(../blocks/popup/__submit-add-photo/popup__submit-add-photo.css);
-@import url(../blocks/popup/_type_add-photo/popup_type_add-photo.css);
-@import url(../blocks/popup/_type_edit-profile/popup_type_edit-profile.css);
+@import url(../blocks/popup/_type/_add-photo/popup_type_add-photo.css);
+@import url(../blocks/popup/_type/_edit-profile/popup_type_edit-profile.css);
+@import url(../blocks/popup/_type/_avatar-change/popup_type_avatar-change.css);
+@import url(../blocks/popup/_type/_confirm-action/popup_type_confirm-action.css);
+@import url(../blocks/popup/_type/_photo-open/popup_type_photo-open.css);
 @import url(../blocks/popup/__form-edit/popup__form-edit.css);
 @import url(../blocks/popup/__photo-card/__photo-card.css);
-@import url(../blocks/popup/_photo-open/popup_photo-open.css);
 @import url(../blocks/popup/__photo-title/popup__photo-title.css);
 @import url(../blocks/popup/__photo-wide/popup__photo-wide.css);
 @import url(../blocks/popup/__input/_invalid/popup__input_invalid.css);
@@ -55,7 +57,5 @@
 @import url(../blocks/popup/__form-label/popup__form-label.css);
 @import url(../blocks/popup/__submit_deactive/popup__submit-deactive.css);
 @import url(../blocks/popup/__form/popup__form.css);
-@import url(../blocks/popup/__avatar-change/popup__avatar-change.css);
-@import url(../blocks/popup/__confirm-action/popup__confirm-action.css);
 @import url(../blocks/popup/__confirm-button/popup__confirm-button.css);
-@import url(../blocks/popup/__form-avatar-change/popup__form-avatar-change.css);
+@import url(../blocks/popup/__form-confirm-action/popup__form-confirm-action.css);

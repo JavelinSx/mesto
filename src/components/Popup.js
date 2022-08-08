@@ -1,6 +1,8 @@
 export default class Popup {
   constructor(popupSelector) {
+    console.log(popupSelector, "Popup")
     this._popupElement = document.querySelector(popupSelector);
+
   }
 
   open() {

@@ -1,21 +1,24 @@
 
-export class FormValidation{
+export default class FormValidation{
 
   constructor(enableValidation, form){
+    this._enableValidation = enableValidation;
     this._form = form;
-    this._inputs = Array.from(form.querySelectorAll(enableValidation.inputSelector));
-    this._submit = form.querySelector(enableValidation.submitButtonSelector)  
-    this._error = enableValidation.errorClass;
-    this._errorInvalid = enableValidation.inputErrorClass;
-    this._toggleSubmit = enableValidation.toggleSubmit;
+    this._inputs = Array.from(this._form.querySelectorAll(this._enableValidation.inputSelector));
+    this._submit = this._form.querySelector(this._enableValidation.submitButtonSelector)  ;
+    this._error = this._enableValidation.errorClass;
+    this._errorInvalid = this._enableValidation.inputErrorClass;
+    this._toggleSubmit = this._enableValidation.toggleSubmit;
 
   }
+
   clearFormError = () => {
     this._inputs.forEach(elem => {
       this._hideInputError(elem);
     })
     this._toggleButtonState();
   }
+
   _showInputError = (elem) => {
     const errorElement = this._form.querySelector(`.${elem.id}-error`);
     elem.classList.add(this._errorInvalid);
