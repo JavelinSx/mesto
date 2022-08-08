@@ -12,17 +12,20 @@ import PopupWithConfirm from "../components/PopupWithConfirm";
 import Api from "../components/Api";
 
 import {
+  avatar,
   profileNameSelector,
   profileActivitySelector,
   profileAvatarSelector,
   popupEditSelector,
   popupAddPhotoSelector,
   popupWithImageSelector,
+  popupAvatarEditSelector,
   popupConfirmSelector,
   templateCardSelector,
   gallerySelector,
   buttonEdit,
   buttonAddPhoto,
+  buttonEditAvatar,
   formPhotoAdd,
   formProfileEdit,
   formAvatarChange
@@ -58,7 +61,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 
 
 
-const user = new UserInfo(profileNameSelector, profileActivitySelector, profileAvatarSelector);
+const userInfo = new UserInfo(profileNameSelector, profileActivitySelector, profileAvatarSelector);
 
 const popupWithFormEdit = new PopupWithForm({
       popupSelector: popupEditSelector,
@@ -93,11 +96,31 @@ const popupWithFormPhoto = new PopupWithForm({
             console.log(`Ошибка: ${err}`)
            })
            .finally(() => {
-            popupWithFormEdit.loading(false)
+            popupWithFormPhoto.loading(false)
            })
       }
 });
 popupWithFormPhoto.setEventListeners();
+
+
+const popupWithFormAvatar = new PopupWithForm({
+  popupSelector: popupAvatarEditSelector,
+  handleFormSubmit: (formInput) => {
+    popupWithFormAvatar.loading(true);
+    api.editAvatar(formInput)
+       .then((formInput) => {
+        avatar.src = formInput.avatar;
+        popupWithFormAvatar.close();
+       })
+       .catch((err) => {
+        console.log(`Ошибка: ${err}`)
+       })
+       .finally(() => {
+        popupWithFormPhoto.loading(false)
+       })
+  }
+})
+popupWithFormAvatar.setEventListeners();
 
 
 const deleteCardPopup = new PopupWithConfirm(popupConfirmSelector);
@@ -168,7 +191,7 @@ validationAvatar.enableValidation();
 
 buttonEdit.addEventListener("click", () => {
   popupWithFormEdit.open();
-  popupWithFormEdit.setInputValues(user.getUserInfo());
+  popupWithFormEdit.setInputValues(userInfo.getUserInfo());
   validationEditProfile.clearFormError();
 });
 
@@ -176,3 +199,9 @@ buttonAddPhoto.addEventListener("click", () => {
   popupWithFormPhoto.open()
   validationAddPhoto.clearFormError();
 });
+
+buttonEditAvatar.addEventListener("click", () => {
+  popupWithFormAvatar.open();
+  userInfo.setUserInfo(userInfo.getUserInfo())
+  validationAvatar.clearFormError();
+})
