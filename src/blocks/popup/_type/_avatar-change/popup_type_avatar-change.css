@@ -1,3 +1,6 @@
 .popup_type_avatar-change{
-    
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

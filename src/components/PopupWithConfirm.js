@@ -1,16 +1,14 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithConfirm extends Popup {
-  constructor( popupSelector ) {
+  constructor( popupSelector) {
     super(popupSelector);
     this._form = this._popupElement.querySelector('.popup__form');
-    console.log(this._form)
   }
 
   handleRemove(removing) {
     this._handleSubmit = removing;
   }
-
 
   setEventListeners() {
     super.setEventListeners();

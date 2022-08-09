@@ -16,7 +16,11 @@ const buttonAddPhoto = document.querySelector(".profile__add-photo-button");
 const buttonEditAvatar = document.querySelector(".profile__edit-button-avatar");
 const formPhotoAdd = document.querySelector(".popup__form-add-photo");
 const formProfileEdit = document.querySelector(".popup__form-edit");
-const formAvatarChange = document.querySelector(".popup__form-avatar-change")
+const formAvatarChange = document.querySelector(".popup__form-avatar-change");
+
+const inputName = document.querySelector('[name="username"]');
+const inputAbout = document.querySelector('[name="useractivity"]')
+const inputAvatar = document.querySelector('[name="useravatar"]')
 
 export {
   avatar,
@@ -35,7 +39,10 @@ export {
   buttonEditAvatar,
   formPhotoAdd,
   formProfileEdit,
-  formAvatarChange
+  formAvatarChange,
+  inputName,
+  inputAbout,
+  inputAvatar
 }
 
 

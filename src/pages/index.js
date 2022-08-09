@@ -28,24 +28,15 @@ import {
   buttonEditAvatar,
   formPhotoAdd,
   formProfileEdit,
-  formAvatarChange
+  formAvatarChange,
+  inputName,
+  inputAbout,
+  inputAvatar
 } from '../utils/constants.js'
 
 
-const api = new Api({
-  beseUrl: 'https://mesto.nomoreparties.co/v1/cohort-46',
-  headers:{
-    authorization: 'a53b037e-2380-4a96-99e7-f57cd5d08416',
-    'Content-Type': 'application/json'
-  }
+const api = new Api('https://mesto.nomoreparties.co/v1/cohort-46', 'a53b037e-2380-4a96-99e7-f57cd5d08416',)
 
-})
-
-
-const cardsList = new Section(
-  (cardItem) => createCard(cardItem),
-  gallerySelector
-);
 
 let userId;
 
@@ -56,24 +47,68 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         cardsList.addItems(initialCards)
        })
        .catch((err) => {
-        console.log(`ошибка: ${err}`)
+        console.log(`${err}`)
        })
 
+const cardsList = new Section((cardItem) => createCard(cardItem), gallerySelector);
 
+const userInfo = new UserInfo(profileNameSelector, profileActivitySelector, profileAvatarSelector, {inputName, inputAbout, inputAvatar});
 
-const userInfo = new UserInfo(profileNameSelector, profileActivitySelector, profileAvatarSelector);
+const createCard = (data) => {
+  const card = new Card({
+    data: data,
+    templateCardSelector: templateCardSelector,
+    userId: userId,
+    handleCardClick: (name, link) => {
+      popupWithImage.open(name, link)
+    },
+    handleSetLike: (cardId) => {
+      api.setLikeCard(cardId)
+         .then((cardInfo) => {
+            card.handleLikeCard(cardInfo)
+         })
+         .catch((err) => {
+          console.log(`${err}`)
+         })
+    },
+    handleRemoveLike: (cardId) => {
+      api.removeLikeCard(cardId)
+        .then((cardInfo) => {
+          card.handleLikeCard(cardInfo)
+        })
+        .catch((err) => {
+          console.log(`${err}`)
+        })
+    },
+    handlePossibilityDelete: (cardId) => {
+      deleteCardPopup.open();
+      deleteCardPopup.handleRemove(() => {
+        api.deleteCard(cardId)
+           .then(() => {
+            deleteCardPopup.close()
+            card.deleteCard()
+           })
+           .catch((err) => {
+            console.log(`${err}`)
+          })
+      })
+    }
+
+  });
+  return card.generatedCard();
+};
 
 const popupWithFormEdit = new PopupWithForm({
       popupSelector: popupEditSelector,
       handleFormSubmit: (formInput) => {
         popupWithFormEdit.loading(true);
-        api.getUserInfo(formInput)
-           .then((formInput) => {
-            userInfo.setUserInfo(formInput),
+        api.editUserInfo(formInput)
+           .then((res) => {
+            userInfo.setUserInfo(res),
             popupWithFormEdit.close()
            })
            .catch((err) => {
-              console.log(`Ошибка: ${err}`)
+              console.log(`${err}`)
            })
            .finally(() => {
             popupWithFormEdit.loading(false)
@@ -87,13 +122,15 @@ const popupWithFormPhoto = new PopupWithForm({
       popupSelector: popupAddPhotoSelector,
       handleFormSubmit: (formInput)  => {
         popupWithFormPhoto.loading(true);
-        api.addCard(formInput)
-           .then((formInput) => {
-            cardsList.addItem(createCard(formInput))
+        api.addCard(formInput.name, formInput.link)
+           .then((res) => {
+            console.log(res)
+            cardsList.addItem(res)
+
             popupWithFormPhoto.close()
            })
            .catch((err) => {
-            console.log(`Ошибка: ${err}`)
+            console.log(`${err}`)
            })
            .finally(() => {
             popupWithFormPhoto.loading(false)
@@ -109,11 +146,11 @@ const popupWithFormAvatar = new PopupWithForm({
     popupWithFormAvatar.loading(true);
     api.editAvatar(formInput)
        .then((formInput) => {
-        avatar.src = formInput.avatar;
+        avatar.src = formInput.useravatar;
         popupWithFormAvatar.close();
        })
        .catch((err) => {
-        console.log(`Ошибка: ${err}`)
+        console.log(`${err}`)
        })
        .finally(() => {
         popupWithFormPhoto.loading(false)
@@ -131,53 +168,6 @@ popupWithImage.setEventListeners();
 
 
 
-const createCard = (data) => {
-  const card = new Card({
-    data: data,
-    templateCardSelector: templateCardSelector,
-    userId: userId,
-    handleCardClick: (name, link) => {
-      popupWithImage.open(name, link)
-    },
-    handleSetLike: (cardId) => {
-      api.setLikeCard(cardId)
-         .then((cardInfo) => {
-            card.handleLikeCard(cardInfo)
-         })
-         .catch((err) => {
-          console.log(`Ошибка: ${err}`)
-         })
-    },
-    handleRemoveLike: (cardId) => {
-      api.removeLikeCard(cardId)
-        .then((cardInfo) => {
-          card.handleLikeCard(cardInfo)
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`)
-        })
-    },
-    handlePossibilityDelete: (cardId) => {
-      deleteCardPopup.open();
-      deleteCardPopup.handleRemove(() => {
-        api.deleteCard(cardId)
-           then(() => {
-            deleteCardPopup.close()
-            card.deleteCard()
-           })
-           .catch((err) => {
-            console.log(`Ошибка: ${err}`)
-          })
-      })
-    }
-
-  });
-  return card.generatedCard();
-};
-
-
-
-
 const validationAddPhoto = new FormValidation(validationSelectors, formPhotoAdd);
 validationAddPhoto.enableValidation();
 
@@ -191,7 +181,7 @@ validationAvatar.enableValidation();
 
 buttonEdit.addEventListener("click", () => {
   popupWithFormEdit.open();
-  popupWithFormEdit.setInputValues(userInfo.getUserInfo());
+  userInfo.setUserInfoInput();
   validationEditProfile.clearFormError();
 });
 
@@ -202,6 +192,5 @@ buttonAddPhoto.addEventListener("click", () => {
 
 buttonEditAvatar.addEventListener("click", () => {
   popupWithFormAvatar.open();
-  userInfo.setUserInfo(userInfo.getUserInfo())
   validationAvatar.clearFormError();
 })

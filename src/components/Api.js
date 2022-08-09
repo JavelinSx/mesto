@@ -1,32 +1,32 @@
-import { data } from "autoprefixer";
 
 export default class Api{
-    constructor(baseUrl, headers){
+    constructor(baseUrl, authorization){
         this._baseUrl = baseUrl;
-        this._headers = headers;
+        this._authorization = authorization;
     }
 
     _parseResponse(res){
         if(res.ok){
             return res.json();
         }
-        return Promise.reject(`ошибка: ${res.status}`);
+        return Promise.reject(`Ошибка: ${res.status}`);
     }
 
     getInitialCards(){
         return fetch(`${this._baseUrl}/cards`, {
-            headers: this._headers
+            headers: {authorization: this._authorization}
         })
         .then(res => this._parseResponse(res))
     }
 
-    addCard(){
+    addCard(name, link){
         return fetch(`${this._baseUrl}/cards`,{
             method: 'POST',
-            headers: this._headers,
+            headers: {authorization: this._authorization,
+                    'Content-Type': 'application/json'},
             body: JSON.stringify({
-                name:data.name,
-                link:data.link
+                name:name,
+                link:link
             })
         })
         .then(res => this._parseResponse(res))
@@ -35,7 +35,8 @@ export default class Api{
     deleteCard(cardId){
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
-            headers: this._headers
+            headers: {authorization: this._authorization,
+                    'Content-Type': 'application/json'}
         })
         .then(res => this._parseResponse(res))
     }
@@ -43,7 +44,8 @@ export default class Api{
     setLikeCard(cardId){
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`,{
             method: 'PUT',
-            headers: this._headers,
+            headers: {authorization: this._authorization,
+                    'Content-Type': 'application/json'},
         })
         .then(res => this._parseResponse(res))
     }
@@ -51,7 +53,8 @@ export default class Api{
     removeLikeCard(cardId){
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`,{
             method: "DELETE",
-            headers: this._headers,
+            headers: {authorization: this._authorization,
+                    'Content-Type': 'application/json'},
         })
         .then(res => this._parseResponse(res))
     }
@@ -59,7 +62,7 @@ export default class Api{
     getUserInfo(){
         return fetch(`${this._baseUrl}/users/me`,{
             method: 'GET',
-            headers: this._headers,
+            headers: {authorization: this._authorization},
         })
         .then(res => this._parseResponse(res))
     }
@@ -67,21 +70,27 @@ export default class Api{
     editUserInfo(data){
         return fetch(`${this._baseUrl}/users/me`,{
             method: 'PATCH',
-            headers: this._headers,
+            headers: {
+                authorization: this._authorization,
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                name: data.name,
-                about: data.activity
+                name: data.username,
+                about: data.useractivity
             })
         })
         .then(res => this._parseResponse(res))
     }
 
     editAvatar(data){
-        return fetch(`${this._baseUrl}/users/me`,{
+        return fetch(`${this._baseUrl}/users/me/avatar`,{
             method: 'PATCH',
-            headers: this._headers,
+            headers: {
+                authorization: this._authorization,
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                avatar: data.avatar
+                avatar: data.useravatar
             })
         })
         .then(res => this._parseResponse(res))

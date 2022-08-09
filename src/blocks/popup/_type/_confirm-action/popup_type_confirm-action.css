@@ -1,3 +1,6 @@
 .popup_type_confirm-action{
-    
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
