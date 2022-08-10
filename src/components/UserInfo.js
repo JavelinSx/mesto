@@ -19,12 +19,14 @@ export default class UserInfo {
   setUserInfo = (data) => {
     this._name.textContent = data.name;
     this._activity.textContent = data.about;
-    this._avatar.src = data.avatar;
   };
 
   setUserInfoInput = () => {
     this._inputName.value = this._name.textContent;
     this._inputAbout.value = this._activity.textContent;
     this._inputAvatar.value = this._avatar.src;
+  }
+  setUserAvatar = (data) => {
+    this._avatar.src = data.avatar;
   }
 }

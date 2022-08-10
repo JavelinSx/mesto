@@ -47,7 +47,7 @@
         <div class="popup popup_type_edit-profile">
                 <div class="popup__container">
                     <button class="popup__close-button popup__close-edit-profile" type="button"></button>
-                    <form name="popup_form" class="popup__form-edit popup__form"  novalidate>
+                    <form name="profile" class="popup__form-edit popup__form"  novalidate>
                         <h2 class="popup__title">Редактировать&nbsp;профиль</h2>
                         <label class="popup__form-label">
                             <input type="text" class="popup__input" name="username" id="popup__form-edit-name" placeholder="Имя" minlength="2" maxlength="40" required>
@@ -66,7 +66,7 @@
         <div class="popup popup_type_add-photo">
             <div class="popup__container">
             <button class="popup__close-button popup__close-add-photo" type="button"></button>
-                <form name="popup_form" class="popup__form-add-photo popup__form-edit popup__form" novalidate>
+                <form name="photo" class="popup__form-add-photo popup__form-edit popup__form" novalidate>
                     <h2 class="popup__title">Новое&nbsp;место</h2>
 
                     <label class="popup__form-label">
@@ -86,7 +86,7 @@
         <div class="popup popup_type_avatar-change">
             <div class="popup__container popup__container-avatar">
             <button class="popup__close-button" type="button"></button>
-                <form name="popup_form" class="popup__form-edit popup__form-avatar-change popup__form" novalidate>
+                <form name="avatar" class="popup__form-edit popup__form-avatar-change popup__form" novalidate>
                     <h2 class="popup__title">Обновить&nbsp;аватар</h2>
 
                     <label class="popup__form-label">
@@ -111,7 +111,7 @@
             <div class="popup__container">
                 
                 <button class="popup__close-button" type="button"></button> 
-                <form name="popup_form" action="#" class="popup__form-edit popup__form-confirm-action popup__form" novalidate>
+                <form name="confirm" action="#" class="popup__form-edit popup__form-confirm-action popup__form" novalidate>
                     <h2 class="popup__title popup__title-confirm">Вы&nbsp;уверены?</h2>
                     <button class="popup__submit popup__confirm-button" type="submit">Да</button>
                 </form>
@@ -134,9 +134,6 @@
             </li>
         </template>
     </div>
-
-
-    <script type="module" src="./pages/index.js"></script>
     
 </body>
 </html>

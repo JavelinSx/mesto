@@ -43,6 +43,7 @@ let userId;
 Promise.all([api.getInitialCards(), api.getUserInfo()])
        .then(([initialCards, userData]) =>{
         userInfo.setUserInfo(userData);
+        userInfo.setUserAvatar(userData);
         userId = userData._id;
         cardsList.addItems(initialCards)
        })
@@ -146,7 +147,7 @@ const popupWithFormAvatar = new PopupWithForm({
     popupWithFormAvatar.loading(true);
     api.editAvatar(formInput)
        .then((formInput) => {
-        avatar.src = formInput.useravatar;
+        userInfo.setUserAvatar(formInput);
         popupWithFormAvatar.close();
        })
        .catch((err) => {
